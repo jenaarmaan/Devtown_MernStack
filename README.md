@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
 # TaskFlow: An Intelligent To-Do List Web App
 
 TaskFlow is a modern, full-stack to-do list application designed to help you stay organized and productive. It features a clean, responsive user interface and is powered by AI to help you prioritize your tasks effectively.
 
 ## 🚀 Project Overview
 
-This project is a To-Do List web application that supports full CRUD (Create, Read, Update, Delete) functionality. It's built with a modern tech stack centered around Next.js and leverages Google's Generative AI for intelligent task prioritization.
+This project is a To-Do List web application that supports full CRUD (Create, Read, Update, Delete) functionality. It's built with a modern tech stack centered around typical MERN principles, Next.js and leverages Google's Generative AI for intelligent task prioritization.
 
 ### ✨ Key Features
 
@@ -27,7 +27,7 @@ This project is built using a modern, powerful tech stack:
 - **State Management:** React Hooks (`useState`, `useEffect`, `useMemo`)
 - **Backend Logic:** Next.js Server Actions (for AI integration)
 
-While the original request mentioned the MERN stack, this project uses an integrated Next.js architecture, where the frontend and backend logic are colocated. This modern approach simplifies development and deployment while providing excellent performance.
+**Note:** While this project leverages typical MERN principles, the folder structure may resemble a modern mono-repo approach.
 
 ## ⚙️ Setup and Installation
 
@@ -79,12 +79,12 @@ You can deploy this Next.js application to any hosting provider that supports No
 
 - **Vercel:** [Your Vercel Deployment Link](https://vercel.com/)
 - **Firebase App Hosting:** [Your Firebase App Hosting Link](https://firebase.google.com/docs/hosting)
+- **My Web App Hosting:** [My Web App Hosting Link](https://studio--taskflow-i3kxa.us-central1.hosted.app)
 
 Remember to set up your `GOOGLE_API_KEY` as an environment variable in your hosting provider's settings.
 
 ---
 
-Built with ❤️ for productivity.
-=======
-# taskflow-ai-todo
->>>>>>> a9c26f8c934be8ccbb985cf228d82cfd6613fb06
+# Built with ❤️ for productivity.
+
+
