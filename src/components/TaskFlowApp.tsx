@@ -18,6 +18,19 @@ export default function TaskFlowApp() {
   const [isPrioritizing, setIsPrioritizing] = useState(false);
   const { toast } = useToast();
 
+  const incompleteTasks = useMemo(
+    () =>
+      tasks
+        .filter((task) => !task.isCompleted)
+        .sort((a, b) => (a.priority ?? Infinity) - (b.priority ?? Infinity)),
+    [tasks]
+  );
+
+  const completedTasks = useMemo(
+    () => tasks.filter((task) => task.isCompleted),
+    [tasks]
+  );
+
   useEffect(() => {
     setIsMounted(true);
     try {
@@ -47,19 +60,6 @@ export default function TaskFlowApp() {
     }
   }, [editingTask]);
 
-  const incompleteTasks = useMemo(
-    () =>
-      tasks
-        .filter((task) => !task.isCompleted)
-        .sort((a, b) => (a.priority ?? Infinity) - (b.priority ?? Infinity)),
-    [tasks]
-  );
-
-  const completedTasks = useMemo(
-    () => tasks.filter((task) => task.isCompleted),
-    [tasks]
-  );
-  
   if (!isMounted) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-background">
@@ -165,9 +165,13 @@ export default function TaskFlowApp() {
       });
     } catch (error) {
       console.error("Failed to prioritize tasks:", error);
+      let description = "Could not prioritize tasks. Please try again later.";
+      if (error instanceof Error && error.message.includes("API key not valid")) {
+        description = "Your Google API Key is invalid. Please check your .env file."
+      }
       toast({
         title: "AI Prioritization Failed",
-        description: "Could not prioritize tasks. Please try again later.",
+        description,
         variant: "destructive",
       });
     } finally {
