@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TaskFlow: An Intelligent To-Do List Web App
 
 TaskFlow is a modern, full-stack to-do list application designed to help you stay organized and productive. It features a clean, responsive user interface and is powered by AI to help you prioritize your tasks effectively.
@@ -84,3 +85,6 @@ Remember to set up your `GOOGLE_API_KEY` as an environment variable in your host
 ---
 
 Built with ❤️ for productivity.
+=======
+# taskflow-ai-todo
+>>>>>>> a9c26f8c934be8ccbb985cf228d82cfd6613fb06
