@@ -46,6 +46,19 @@ export default function TaskFlowApp() {
       setTaskInput("");
     }
   }, [editingTask]);
+
+  const incompleteTasks = useMemo(
+    () =>
+      tasks
+        .filter((task) => !task.isCompleted)
+        .sort((a, b) => (a.priority ?? Infinity) - (b.priority ?? Infinity)),
+    [tasks]
+  );
+
+  const completedTasks = useMemo(
+    () => tasks.filter((task) => task.isCompleted),
+    [tasks]
+  );
   
   if (!isMounted) {
     return (
@@ -107,8 +120,8 @@ export default function TaskFlowApp() {
 
 
   const handlePrioritizeTasks = async () => {
-    const incompleteTasks = tasks.filter((task) => !task.isCompleted);
-    if (incompleteTasks.length === 0) {
+    const tasksToPrioritize = tasks.filter((task) => !task.isCompleted);
+    if (tasksToPrioritize.length === 0) {
       toast({
         title: "No incomplete tasks to prioritize.",
         description: "Add some new tasks or mark some as incomplete.",
@@ -118,7 +131,7 @@ export default function TaskFlowApp() {
 
     setIsPrioritizing(true);
     try {
-      const tasksForAI = incompleteTasks.map(
+      const tasksForAI = tasksToPrioritize.map(
         ({ id, description, isCompleted }) => ({
           id,
           description,
@@ -162,19 +175,6 @@ export default function TaskFlowApp() {
     }
   };
 
-  const incompleteTasks = useMemo(
-    () =>
-      tasks
-        .filter((task) => !task.isCompleted)
-        .sort((a, b) => (a.priority ?? Infinity) - (b.priority ?? Infinity)),
-    [tasks]
-  );
-
-  const completedTasks = useMemo(
-    () => tasks.filter((task) => task.isCompleted),
-    [tasks]
-  );
-
   return (
     <TooltipProvider>
       <div className="min-h-screen bg-background text-foreground font-body">
@@ -201,7 +201,7 @@ export default function TaskFlowApp() {
               onClick={handlePrioritizeTasks}
               disabled={
                 isPrioritizing ||
-                tasks.filter((t) => !t.isCompleted).length === 0
+                incompleteTasks.length === 0
               }
             >
               {isPrioritizing ? (
